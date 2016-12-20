@@ -6,7 +6,7 @@ Address: {{ profile.address_num }} {{ profile.address_street}}, {{ profile.addre
 <h3>Current Cart</h3>
 
 {% for item in profile.user.cart.items %}
-{{ item.name }} - {{ item.price }}<br>
+{{ item.name }} - {{ item.price }} <a href="{% url 'remove_from_cart_view' item.id %}">X</a><br>
 {% endfor %}
 Total = {{ profile.user.cart.total }}<br>
 {% if not profile.user.cart.total == 0 %}
