@@ -1,7 +1,7 @@
 from django.conf.urls import url, include
 from django.conf.urls import url
 from django.contrib import admin
-from user_auth.views import UserCreateView, CartDetailView
+from user_auth.views import UserCreateView, CartDetailView, CartUpdateView, ProfileDetailView
 from products.views import ProductListView, ProductDetailView, AddToCartView
 
 urlpatterns = [
@@ -12,6 +12,6 @@ urlpatterns = [
     url(r'^product/(?P<pk>\d+)/$', ProductDetailView.as_view(), name='product_detail_view'),
     url(r'^product/(?P<pk>\d+)/add-to-cart/$', AddToCartView.as_view(), name='add_to_cart_view'),
     url(r'^cart/(?P<pk>\d+)/$', CartDetailView.as_view(), name='cart_detail_view'),
-    
-
+    url(r'^cart/(?P<pk>\d+)/checkout$', CartUpdateView.as_view(), name='cart_update_view'),
+    url(r'^profile/(?P<pk>\d+)/$', ProfileDetailView.as_view(), name='profile_detail_view'),
 ]

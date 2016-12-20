@@ -7,4 +7,5 @@
 {% endfor %}<hr>
 Total = {{ cart.total }}
 
+<a href="{% url 'cart_update_view' cart.id %}">Checkout</a>
 {% endblock %}

@@ -13,6 +13,10 @@ class Profile(models.Model):
     def __str__(self):
         return str(self.user.username)
 
+    @property
+    def shipments(self):
+        return self.user.shipment_set.all()
+
 @receiver(post_save, sender=User)
 def create(**kwargs):
     created = kwargs['created']

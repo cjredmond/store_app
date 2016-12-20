@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h3>Current Cart</h3>
+
+{% for item in profile.user.cart.items %}
+{{ item.name }} - {{ item.price }}<br>
+{% endfor %}
+Total = {{ profile.user.cart.total }}<br>
+{% if not profile.user.cart.total == 0 %}
+<a href="{% url 'cart_update_view' profile.user.cart.id %}">Checkout</a><br>
+{% endif %}
+<hr>
+
+{% for shipment in profile.shipments %}
+{% include 'partials/_shipment.html' %}
+{% endfor %}
+{% endblock %}
