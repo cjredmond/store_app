@@ -11,7 +11,6 @@
         <li><a href="{% url 'login' %}">Login</a></li>
         <li><a href="{% url 'logout' %}?next={% url 'product_list_view' %}">Logout</a></li>
         {% if request.user.is_authenticated %}
-        <li><a href="{% url 'cart_detail_view' request.user.cart.id %}">Cart</a></li>
         <li><a href="{% url 'profile_detail_view' request.user.profile.id %}">Profile</a></li>
         {% endif %}
         {% if not request.user.is_authenticated %}

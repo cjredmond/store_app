@@ -36,4 +36,4 @@ class Cart(models.Model):
         return self.cartproduct_set.all()
 
     def total(self):
-        return sum([product.price for product in self.items])
+        return round(sum([product.price for product in self.items]),2)

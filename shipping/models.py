@@ -9,7 +9,7 @@ class Shipment(models.Model):
         return self.orderproduct_set.all()
 
     def total(self):
-        return sum([product.price for product in self.items])
+        return round(sum([product.price for product in self.items]),2)
 
 class OrderProduct(models.Model):
     shipment = models.ForeignKey(Shipment)
