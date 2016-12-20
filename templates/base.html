@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="{% url 'product_list_view' %}">Products</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% url 'logout' %}?next={% url 'product_list_view' %}">Logout</a></li>
+        {% if request.user.is_authenticated %}
+        <li><a href="{% url 'cart_detail_view' request.user.cart.id %}">Cart</a></li>
+        {% endif %}
+        {% if not request.user.is_authenticated %}
+        <li><a href="{% url 'user_create_view' %}">New User</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>

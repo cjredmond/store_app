@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{{ cart.user }}<br>
+{% for item in cart.items %}
+{{ item.name }} - {{ item.price }}<br>
+{% endfor %}<hr>
+Total = {{ cart.total }}
+
+{% endblock %}
