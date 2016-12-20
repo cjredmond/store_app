@@ -8,6 +8,9 @@ from user_auth.models import Cart, Profile
 from shipping.models import Shipment, OrderProduct
 from products.models import CartProduct
 
+class IndexView(TemplateView):
+    template_name = "index.html"
+
 class UserCreateView(CreateView):
     model = User
     form_class = UserCreationForm
@@ -35,3 +38,13 @@ class CartUpdateView(UpdateView):
 
 class ProfileDetailView(DetailView):
     model = Profile
+
+class ProfileUpdateView(UpdateView):
+    model = Profile
+    fields = ('address_num', 'address_street','address_city', 'address_state')
+
+    def get_success_url(self):
+        return reverse('profile_detail_view', args=str(self.request.user.profile.id))
+    def form_valid(self,form):
+        instance = form.save(commit=False)
+        return super().form_valid(form)

@@ -5,10 +5,10 @@ from django.db.models.signals import post_save
 
 class Profile(models.Model):
     user = models.OneToOneField('auth.User')
-    adress_num = models.IntegerField(blank=True,null=True)
-    adress_street = models.CharField(max_length=40,blank=True,null=True)
-    adress_city = models.CharField(max_length=40,blank=True,null=True)
-    adress_state = models.CharField(max_length=2,blank=True,null=True)
+    address_num = models.IntegerField(blank=True,null=True)
+    address_street = models.CharField(max_length=40,blank=True,null=True)
+    address_city = models.CharField(max_length=40,blank=True,null=True)
+    address_state = models.CharField(max_length=2,blank=True,null=True)
 
     def __str__(self):
         return str(self.user.username)

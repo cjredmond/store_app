@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
 
+Address: {{ profile.address_num }} {{ profile.address_street}}, {{ profile.address_city }}, {{ profile.address_state}}
+<a href="{% url 'profile_update_view' request.user.profile.id %}">Update Info</a>
 <h3>Current Cart</h3>
 
 {% for item in profile.user.cart.items %}
