@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models import IntegerField
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Product(models.Model):
     name = models.CharField(max_length=50)
@@ -14,6 +16,20 @@ class Product(models.Model):
         if self.stock:
             return True
         return False
+
+class Review(models.Model):
+    user = models.ForeignKey('auth.User')
+    text = models.TextField()
+    product = models.ForeignKey(Product)
+    time = models.DateTimeField(auto_now_add=True)
+    rating = IntegerField(
+        default=1,
+        validators=[
+            MaxValueValidator(5),
+            MinValueValidator(0)
+        ]
+     )
+
 
 class CartProduct(models.Model):
     name = models.CharField(max_length=50)
