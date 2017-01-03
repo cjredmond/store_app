@@ -21,6 +21,10 @@ class Product(models.Model):
     def all_reviews(self):
         return self.review_set.all()
 
+    def avg_review(self):
+        if self.all_reviews():
+            return (sum([review.rating for review in self.all_reviews()])) / self.review_set.all().count()
+
 class Review(models.Model):
     user = models.ForeignKey('auth.User')
     text = models.TextField()

@@ -3,7 +3,8 @@ from django.conf.urls import url
 from django.contrib import admin
 from user_auth.views import UserCreateView, CartDetailView, CartUpdateView, ProfileDetailView, \
                             IndexView, ProfileUpdateView
-from products.views import ProductListView, ProductDetailView, AddToCartView, RemoveFromCartView
+from products.views import ProductListView, ProductDetailView, AddToCartView, RemoveFromCartView, \
+                           ReviewCreateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -18,4 +19,5 @@ urlpatterns = [
     url(r'^cart/(?P<pk>\d+)/checkout$', CartUpdateView.as_view(), name='cart_update_view'),
     url(r'^profile/(?P<pk>\d+)/$', ProfileDetailView.as_view(), name='profile_detail_view'),
     url(r'^profile/(?P<pk>\d+)/update/$', ProfileUpdateView.as_view(), name='profile_update_view'),
+    url(r'^review/(?P<pk>\d+)/$', ReviewCreateView.as_view(), name='review_create_view'),
 ]

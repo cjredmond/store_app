@@ -9,6 +9,9 @@
     {% for product in shipment.items %}
     {{ product.name }} - {{ product.price }}<br>
     {{ product.total }}
+    {% if not product.already_reviewed %}
+    <a href="{% url 'review_create_view' product.id %}">Review</a>
+    {% endif %}
     {% endfor %}
     <hr>
   </body>

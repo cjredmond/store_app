@@ -2,12 +2,14 @@
 {% block content %}
 {{ product.name }} - {{ product.price }}<br>
 {{ product.stock }} in stock <br>
-{{ product.description }}
+{{ product.description }}<br>
+{{ product.avg_review }}
 <form class="" action="{% url 'add_to_cart_view' product.id %}" method="post">
   {% csrf_token %}
   <input type="submit" value="ADD">
 </form>
 
+<h3>Reviews</h3>
 {% for review in product.all_reviews %}
 {% include 'partials/_review.html' %}
 {% endfor %}
