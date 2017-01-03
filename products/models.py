@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models import IntegerField
 from django.core.validators import MaxValueValidator, MinValueValidator
+from datetime import datetime, timezone, timedelta
 
 class Product(models.Model):
     name = models.CharField(max_length=50)
@@ -17,6 +18,9 @@ class Product(models.Model):
             return True
         return False
 
+    def all_reviews(self):
+        return self.review_set.all()
+
 class Review(models.Model):
     user = models.ForeignKey('auth.User')
     text = models.TextField()
@@ -26,10 +30,9 @@ class Review(models.Model):
         default=1,
         validators=[
             MaxValueValidator(5),
-            MinValueValidator(0)
-        ]
-     )
-
+            MinValueValidator(0)])
+    class Meta:
+        unique_together = ('user', 'product')
 
 class CartProduct(models.Model):
     name = models.CharField(max_length=50)

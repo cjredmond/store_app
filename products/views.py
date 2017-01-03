@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from products.models import Product, CartProduct
+from products.models import Product, CartProduct, Review
 from django.urls import reverse, reverse_lazy
 
 class ProductListView(ListView):

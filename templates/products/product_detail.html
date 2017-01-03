@@ -8,4 +8,8 @@
   <input type="submit" value="ADD">
 </form>
 
+{% for review in product.all_reviews %}
+{% include 'partials/_review.html' %}
+{% endfor %}
+
 {% endblock %}
