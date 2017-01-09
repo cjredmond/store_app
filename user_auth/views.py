@@ -31,7 +31,7 @@ class CartUpdateView(UpdateView):
         new = Shipment.objects.create(user=self.request.user)
         items = CartProduct.objects.filter(cart=target)
         for product in items:
-            OrderProduct.objects.create(name=product.name, price=product.price, description=product.description, shipment=new)
+            OrderProduct.objects.create(name=product.name, price=product.price, description=product.description, shipment=new, copy_product=Product.models.get(name=product.name))
         new.save()
         items.delete()
         return super().form_valid(form)

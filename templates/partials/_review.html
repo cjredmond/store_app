@@ -1,8 +1,11 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen" title="no title">
+    <link rel="stylesheet" type"text/css" href="{% static 'css/theme.css' %}">
   </head>
   <body>
     <h5>{{ review.user }} - {{ review.time }}</h5>

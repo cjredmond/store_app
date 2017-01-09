@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+
+{{ product }}
 <form class="" method="post">
   {% csrf_token %}
   {{ form.as_p }}

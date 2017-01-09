@@ -41,13 +41,19 @@ class RemoveFromCartView(DeleteView):
 class ReviewCreateView(CreateView):
     model = Review
     fields = ('text', 'rating')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['product'] = Product.objects.get(id=self.kwargs['pk'])
+        return context
+
     def get_success_url(self, **kwargs):
         return reverse('product_list_view')
 
     def form_valid(self, form, **kwargs):
         instance = form.save(commit=False)
-        target = OrderProduct.objects.get(id=self.kwargs['pk'])
-        new_target = Product.objects.get(name=target.name)
-        instance.product = new_target
+        target = Product.objects.get(id=self.kwargs['pk'])
+        #new_target = Product.objects.get(name=target.name)
+        instance.product = target
         instance.user = self.request.user
         return super().form_valid(form)

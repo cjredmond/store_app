@@ -17,6 +17,7 @@ class OrderProduct(models.Model):
     name = models.CharField(max_length=50)
     price = models.FloatField()
     description = models.TextField()
+    copy_product = models.ForeignKey(Product)
 
     @property
     def already_reviewed(self):
